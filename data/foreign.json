@@ -1,0 +1,29 @@
+{
+  "source": "https://www.wantgoo.com/stock/institutional-investors/three-trade-for-trading-amount",
+  "sourceName": "玩股網｜三大法人買賣金額",
+  "field": "外資合計（不含自營 + 外資自營商）",
+  "unit": "億元",
+  "updatedAt": "2026-09-20T03:22:00+08:00",
+  "days": [
+    { "date": "2026-08-24", "netBuyYi": -157.36 },
+    { "date": "2026-08-25", "netBuyYi": -7.87 },
+    { "date": "2026-08-26", "netBuyYi": 366.13 },
+    { "date": "2026-08-27", "netBuyYi": 490.94 },
+    { "date": "2026-08-28", "netBuyYi": 417.54 },
+    { "date": "2026-08-31", "netBuyYi": -143.92 },
+    { "date": "2026-09-01", "netBuyYi": 267.08 },
+    { "date": "2026-09-02", "netBuyYi": -913.55 },
+    { "date": "2026-09-03", "netBuyYi": -481.46 },
+    { "date": "2026-09-04", "netBuyYi": 562.13 },
+    { "date": "2026-09-07", "netBuyYi": 883.08 },
+    { "date": "2026-09-08", "netBuyYi": 132.69 },
+    { "date": "2026-09-09", "netBuyYi": 209.24 },
+    { "date": "2026-09-10", "netBuyYi": -383.34 },
+    { "date": "2026-09-11", "netBuyYi": -892.7 },
+    { "date": "2026-09-14", "netBuyYi": -369.64 },
+    { "date": "2026-09-15", "netBuyYi": -626.99 },
+    { "date": "2026-09-16", "netBuyYi": -179.8 },
+    { "date": "2026-09-17", "netBuyYi": 121.85 },
+    { "date": "2026-09-18", "netBuyYi": 869.94 }
+  ]
+}

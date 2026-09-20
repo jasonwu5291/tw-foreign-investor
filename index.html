@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>台股外資買賣超｜近20日</title>
+    <meta
+      name="description"
+      content="近20個交易日台灣股市外資買賣超統計直線圖，資料取自玩股網三大法人買賣金額。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Shippori+Mincho:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <canvas id="leaves" aria-hidden="true"></canvas>
+    <div class="mist"></div>
+    <div class="glow"></div>
+
+    <main class="frame">
+      <header class="hero">
+        <p class="kicker">紅葉觀市 · 近二十交易日</p>
+        <h1>台股外資買賣超</h1>
+        <p class="lede">
+          僅觀察玩股網三大法人中的<strong>外資合計</strong>，以直條圖呈現近 20 日買賣超走勢。
+        </p>
+      </header>
+
+      <section class="stats" id="stats"></section>
+
+      <section class="panel chart-panel">
+        <div class="panel-head">
+          <h2>外資買賣超走勢</h2>
+          <p>單位：億元　紅為買超、綠為賣超</p>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chart"></canvas>
+        </div>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-head">
+          <h2>逐日明細</h2>
+          <p id="updated">資料更新中…</p>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>交易日</th>
+                <th>外資買賣超（億）</th>
+                <th>方向</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        資料來源：
+        <a
+          href="https://www.wantgoo.com/stock/institutional-investors/three-trade-for-trading-amount"
+          target="_blank"
+          rel="noopener"
+          >玩股網｜三大法人買賣金額</a
+        >
+        。本站為公開靜態頁，知道連結即可瀏覽。
+      </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="js/leaves.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
