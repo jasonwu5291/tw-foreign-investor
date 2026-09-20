@@ -1,12 +1,12 @@
 :root {
-  --ink: #2a120c;
-  --paper: rgba(255, 241, 220, 0.86);
-  --paper-strong: rgba(255, 246, 232, 0.94);
-  --line: rgba(122, 46, 26, 0.22);
-  --gold: #d4a056;
-  --buy: #c43a2c;
-  --sell: #3d6b4a;
-  --muted: #6d4333;
+  --ink: #1a0508;
+  --paper: rgba(255, 248, 248, 0.9);
+  --paper-strong: rgba(255, 250, 250, 0.95);
+  --line: rgba(160, 12, 28, 0.18);
+  --gold: #f0c14b;
+  --buy: #c1121f;
+  --sell: #1b7a46;
+  --muted: #7a2a34;
 }
 
 * {
@@ -21,15 +21,15 @@ body {
 
 body {
   color: var(--ink);
-  font-family: "Noto Serif TC", "Shippori Mincho", serif;
+  font-family: "Noto Sans TC", sans-serif;
   background:
-    radial-gradient(1200px 700px at 12% -10%, rgba(255, 186, 92, 0.38), transparent 55%),
-    radial-gradient(900px 640px at 108% 8%, rgba(176, 42, 28, 0.42), transparent 50%),
-    linear-gradient(180deg, #4a160f 0%, #7a2a16 28%, #b24a24 58%, #c46a32 78%, #6e2a18 100%);
+    radial-gradient(900px 520px at 8% -8%, rgba(255, 80, 90, 0.55), transparent 58%),
+    radial-gradient(820px 580px at 108% 12%, rgba(255, 210, 80, 0.18), transparent 46%),
+    linear-gradient(180deg, #7a000c 0%, #c4061a 32%, #e31b2d 58%, #b00016 82%, #6e000c 100%);
   overflow-x: hidden;
 }
 
-#leaves {
+#bills {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -38,22 +38,14 @@ body {
   pointer-events: none;
 }
 
-.mist,
-.glow {
+.vignette {
   position: fixed;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-}
-
-.mist {
   background:
-    linear-gradient(180deg, rgba(42, 10, 6, 0.18), transparent 24%),
-    linear-gradient(0deg, rgba(42, 12, 8, 0.38), transparent 32%);
-}
-
-.glow {
-  background: radial-gradient(circle at 50% 118%, rgba(255, 196, 110, 0.28), transparent 42%);
+    linear-gradient(180deg, rgba(70, 0, 8, 0.28), transparent 22%),
+    linear-gradient(0deg, rgba(70, 0, 8, 0.42), transparent 28%);
 }
 
 .frame {
@@ -66,8 +58,8 @@ body {
 
 .hero {
   text-align: center;
-  color: #fff6e8;
-  text-shadow: 0 2px 18px rgba(60, 16, 8, 0.35);
+  color: #fff5f5;
+  text-shadow: 0 2px 16px rgba(80, 0, 10, 0.45);
   margin-bottom: 28px;
 }
 
@@ -75,26 +67,26 @@ body {
   letter-spacing: 0.42em;
   font-size: 0.82rem;
   margin: 0 0 12px;
-  color: #f0c27a;
+  color: #ffd56a;
+  font-weight: 600;
 }
 
 h1 {
-  font-family: "Shippori Mincho", "Noto Serif TC", serif;
   font-size: clamp(2.2rem, 5vw, 3.6rem);
-  font-weight: 700;
+  font-weight: 900;
   margin: 0;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
 }
 
 .lede {
   max-width: 36rem;
   margin: 14px auto 0;
   line-height: 1.8;
-  color: #ffe7c8;
+  color: #ffe4e6;
 }
 
 .lede strong {
-  color: #ffd7a0;
+  color: #ffe08a;
 }
 
 .stats {
@@ -106,7 +98,7 @@ h1 {
 
 .stat {
   background: var(--paper);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 220, 220, 0.7);
   border-radius: 16px;
   padding: 16px 18px 14px;
   backdrop-filter: blur(8px);
@@ -122,7 +114,7 @@ h1 {
 .stat .value {
   margin: 8px 0 0;
   font-size: 1.45rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.02em;
 }
 
@@ -136,7 +128,7 @@ h1 {
 
 .panel {
   background: var(--paper-strong);
-  border: 1px solid rgba(255, 226, 186, 0.7);
+  border: 1px solid rgba(255, 210, 214, 0.8);
   border-radius: 22px;
   padding: 22px 22px 18px;
   margin-bottom: 18px;
@@ -183,17 +175,17 @@ th,
 td {
   text-align: left;
   padding: 11px 8px;
-  border-bottom: 1px solid rgba(122, 46, 26, 0.14);
+  border-bottom: 1px solid rgba(160, 12, 28, 0.12);
 }
 
 th {
   color: var(--muted);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 td.num {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 td.buy,
@@ -207,7 +199,7 @@ td.sell,
 }
 
 footer {
-  color: #ffe7c8;
+  color: #ffe4e6;
   text-align: center;
   font-size: 0.9rem;
   line-height: 1.7;
@@ -215,7 +207,7 @@ footer {
 }
 
 footer a {
-  color: #ffd7a0;
+  color: #ffd56a;
 }
 
 @media (max-width: 800px) {

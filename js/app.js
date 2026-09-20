@@ -72,10 +72,10 @@ function renderChart(days) {
           label: "外資買賣超（億元）",
           data: values,
           backgroundColor: values.map((value) =>
-            value >= 0 ? "rgba(196, 58, 44, 0.88)" : "rgba(61, 107, 74, 0.82)"
+            value >= 0 ? "rgba(193, 18, 31, 0.9)" : "rgba(27, 122, 70, 0.84)"
           ),
           borderColor: values.map((value) =>
-            value >= 0 ? "rgba(140, 32, 24, 0.95)" : "rgba(36, 74, 48, 0.95)"
+            value >= 0 ? "rgba(140, 8, 20, 0.95)" : "rgba(16, 82, 46, 0.95)"
           ),
           borderWidth: 1,
           borderRadius: 6,
@@ -98,19 +98,19 @@ function renderChart(days) {
       },
       scales: {
         x: {
-          title: { display: true, text: "交易日", color: "#6d4333" },
-          ticks: { color: "#6d4333", maxRotation: 60, minRotation: 40 },
+          title: { display: true, text: "交易日", color: "#7a2a34" },
+          ticks: { color: "#7a2a34", maxRotation: 60, minRotation: 40 },
           grid: { display: false },
         },
         y: {
-          title: { display: true, text: "買賣超（億元）", color: "#6d4333" },
+          title: { display: true, text: "買賣超（億元）", color: "#7a2a34" },
           ticks: {
-            color: "#6d4333",
+            color: "#7a2a34",
             callback(value) {
               return value;
             },
           },
-          grid: { color: "rgba(122, 46, 26, 0.12)" },
+          grid: { color: "rgba(160, 12, 28, 0.12)" },
         },
       },
     },

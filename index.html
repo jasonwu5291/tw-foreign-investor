@@ -11,19 +11,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Shippori+Mincho:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <canvas id="leaves" aria-hidden="true"></canvas>
-    <div class="mist"></div>
-    <div class="glow"></div>
+    <canvas id="bills" aria-hidden="true"></canvas>
+    <div class="vignette"></div>
 
     <main class="frame">
       <header class="hero">
-        <p class="kicker">紅葉觀市 · 近二十交易日</p>
+        <p class="kicker">資金流向 · 近二十交易日</p>
         <h1>台股外資買賣超</h1>
         <p class="lede">
           僅觀察玩股網三大法人中的<strong>外資合計</strong>，以直條圖呈現近 20 日買賣超走勢。
@@ -74,7 +73,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-    <script src="js/leaves.js"></script>
+    <script src="js/bills.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
