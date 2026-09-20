@@ -1,12 +1,12 @@
 :root {
-  --ink: #1a0508;
-  --paper: rgba(255, 248, 248, 0.9);
-  --paper-strong: rgba(255, 250, 250, 0.95);
-  --line: rgba(160, 12, 28, 0.18);
-  --gold: #f0c14b;
-  --buy: #c1121f;
-  --sell: #1b7a46;
-  --muted: #7a2a34;
+  --ink: #2a0408;
+  --paper: rgba(255, 246, 246, 0.92);
+  --paper-strong: rgba(255, 250, 250, 0.96);
+  --line: rgba(190, 0, 20, 0.2);
+  --gold: #ffe566;
+  --buy: #d40018;
+  --sell: #147a3a;
+  --muted: #8a1a28;
 }
 
 * {
@@ -23,13 +23,13 @@ body {
   color: var(--ink);
   font-family: "Noto Sans TC", sans-serif;
   background:
-    radial-gradient(900px 520px at 8% -8%, rgba(255, 80, 90, 0.55), transparent 58%),
-    radial-gradient(820px 580px at 108% 12%, rgba(255, 210, 80, 0.18), transparent 46%),
-    linear-gradient(180deg, #7a000c 0%, #c4061a 32%, #e31b2d 58%, #b00016 82%, #6e000c 100%);
+    radial-gradient(980px 560px at 12% -12%, rgba(255, 70, 70, 0.7), transparent 58%),
+    radial-gradient(760px 520px at 100% 8%, rgba(255, 220, 80, 0.22), transparent 48%),
+    linear-gradient(180deg, #9b000c 0%, #e00016 28%, #ff1a2e 52%, #d40018 78%, #8a000c 100%);
   overflow-x: hidden;
 }
 
-#bills {
+#ingots {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -44,8 +44,8 @@ body {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(70, 0, 8, 0.28), transparent 22%),
-    linear-gradient(0deg, rgba(70, 0, 8, 0.42), transparent 28%);
+    linear-gradient(180deg, rgba(90, 0, 8, 0.22), transparent 24%),
+    linear-gradient(0deg, rgba(80, 0, 8, 0.38), transparent 30%);
 }
 
 .frame {
@@ -58,8 +58,8 @@ body {
 
 .hero {
   text-align: center;
-  color: #fff5f5;
-  text-shadow: 0 2px 16px rgba(80, 0, 10, 0.45);
+  color: #fff7f7;
+  text-shadow: 0 2px 16px rgba(90, 0, 10, 0.45);
   margin-bottom: 28px;
 }
 
@@ -67,8 +67,8 @@ body {
   letter-spacing: 0.42em;
   font-size: 0.82rem;
   margin: 0 0 12px;
-  color: #ffd56a;
-  font-weight: 600;
+  color: #ffe566;
+  font-weight: 700;
 }
 
 h1 {
@@ -82,11 +82,11 @@ h1 {
   max-width: 36rem;
   margin: 14px auto 0;
   line-height: 1.8;
-  color: #ffe4e6;
+  color: #ffe3e6;
 }
 
 .lede strong {
-  color: #ffe08a;
+  color: #ffe566;
 }
 
 .stats {
@@ -98,7 +98,7 @@ h1 {
 
 .stat {
   background: var(--paper);
-  border: 1px solid rgba(255, 220, 220, 0.7);
+  border: 1px solid rgba(255, 210, 120, 0.45);
   border-radius: 16px;
   padding: 16px 18px 14px;
   backdrop-filter: blur(8px);
@@ -128,7 +128,7 @@ h1 {
 
 .panel {
   background: var(--paper-strong);
-  border: 1px solid rgba(255, 210, 214, 0.8);
+  border: 1px solid rgba(255, 214, 120, 0.5);
   border-radius: 22px;
   padding: 22px 22px 18px;
   margin-bottom: 18px;
@@ -175,7 +175,7 @@ th,
 td {
   text-align: left;
   padding: 11px 8px;
-  border-bottom: 1px solid rgba(160, 12, 28, 0.12);
+  border-bottom: 1px solid rgba(190, 0, 20, 0.12);
 }
 
 th {
@@ -199,7 +199,7 @@ td.sell,
 }
 
 footer {
-  color: #ffe4e6;
+  color: #ffe3e6;
   text-align: center;
   font-size: 0.9rem;
   line-height: 1.7;
@@ -207,7 +207,7 @@ footer {
 }
 
 footer a {
-  color: #ffd56a;
+  color: #ffe566;
 }
 
 @media (max-width: 800px) {
