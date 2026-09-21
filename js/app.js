@@ -1,5 +1,5 @@
 const SOURCE =
-  "https://www.wantgoo.com/stock/institutional-investors/three-trade-for-trading-amount";
+  "https://www.twse.com.tw/zh/trading/foreign/bfi82u.html";
 
 function formatYi(value) {
   const sign = value > 0 ? "+" : "";

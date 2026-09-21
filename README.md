@@ -4,7 +4,7 @@
 
 - 網站（任何人知道連結即可讀取）：https://jasonwu5291.github.io/tw-foreign-investor/
 - 倉庫：https://github.com/jasonwu5291/tw-foreign-investor
-- 資料來源（僅觀察此頁外資欄位）：[玩股網｜三大法人買賣金額](https://www.wantgoo.com/stock/institutional-investors/three-trade-for-trading-amount)
+- 資料來源（僅觀察此頁外資欄位）：[臺灣證券交易所｜三大法人買賣金額統計表](https://www.twse.com.tw/zh/trading/foreign/bfi82u.html)
 - 欄位：外資合計（不含自營 + 外資自營商），單位為億元
 
-更新資料時，在本機執行 `python scripts/update_data.py`，再把 `data/foreign.json` 推上 GitHub。
+更新資料時，在本機執行 `python3 scripts/update_data.py`，再把 `data/foreign.json` 推上 GitHub。
