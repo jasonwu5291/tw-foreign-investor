@@ -1,9 +1,6 @@
 name: Update foreign investor data
 
 on:
-  schedule:
-    # 台灣時間每天下午 5 點 = UTC 09:00
-    - cron: "0 9 * * *"
   workflow_dispatch:
 
 permissions:
