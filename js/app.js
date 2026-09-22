@@ -118,7 +118,7 @@ function renderChart(days) {
 }
 
 async function main() {
-  const response = await fetch("data/foreign.json", { cache: "no-store" });
+  const response = await fetch(`data/foreign.json?t=${Date.now()}`, { cache: "no-store" });
   if (!response.ok) throw new Error("無法讀取外資資料");
   const payload = await response.json();
   const days = payload.days || [];

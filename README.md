@@ -7,4 +7,4 @@
 - 資料來源（僅觀察此頁外資欄位）：[玩股網｜三大法人買賣金額](https://www.wantgoo.com/stock/institutional-investors/three-trade-for-trading-amount)
 - 欄位：外資合計（不含自營 + 外資自營商），單位為億元
 
-更新資料時，在本機執行 `python scripts/update_data.py`，再把 `data/foreign.json` 推上 GitHub。
+GitHub Actions 會在**台灣時間每天下午 5 點**自動抓玩股網外資資料、更新 `data/foreign.json`，並重新發布網頁。也可在倉庫的 Actions 頁面手動執行 `Update foreign investor data`。
