@@ -44,18 +44,32 @@ def fetch_rows_playwright() -> list[dict]:
     from playwright.sync_api import sync_playwright
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto(SOURCE_PAGE, wait_until="domcontentloaded", timeout=60000)
+        browser = playwright.chromium.launch(
+            headless=True,
+            args=["--disable-blink-features=AutomationControlled"],
+        )
+        page = browser.new_page(
+            locale="zh-TW",
+            timezone_id="Asia/Taipei",
+            user_agent=HEADERS["User-Agent"],
+        )
+        page.goto(SOURCE_PAGE, wait_until="domcontentloaded", timeout=90000)
+        page.wait_for_function(
+            """() => Array.isArray(window.threeTradeData) && window.threeTradeData.length > 10
+                || (window.$ && $.http && document.querySelectorAll('#dataTable tr').length > 10)""",
+            timeout=90000,
+        )
         payload = page.evaluate(
             """async (path) => {
-                const response = await fetch(path, {
-                    headers: { Accept: "application/json,text/plain,*/*" }
-                });
-                if (!response.ok) {
-                    throw new Error("Wantgoo status " + response.status);
+                if (Array.isArray(window.threeTradeData) && window.threeTradeData.length > 10) {
+                    return window.threeTradeData;
                 }
-                return await response.json();
+                if (window.$ && $.http) {
+                    return await new Promise((resolve, reject) => {
+                        $.http.get(path).then(resolve).fail((_, __, error) => reject(error));
+                    });
+                }
+                throw new Error("Wantgoo page did not expose threeTradeData");
             }""",
             DATA_PATH,
         )
