@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import ssl
+import time
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -53,7 +54,11 @@ def fetch_rows_playwright() -> list[dict]:
             timezone_id="Asia/Taipei",
             user_agent=HEADERS["User-Agent"],
         )
-        page.goto(SOURCE_PAGE, wait_until="domcontentloaded", timeout=90000)
+        response = page.goto(SOURCE_PAGE, wait_until="domcontentloaded", timeout=90000)
+        title = page.title()
+        if (response and response.status == 403) or ("請稍候" in title) or ("Just a moment" in title):
+            browser.close()
+            raise RuntimeError(f"Wantgoo Cloudflare challenge (title={title!r})")
         page.wait_for_function(
             """() => Array.isArray(window.threeTradeData) && window.threeTradeData.length > 10
                 || (window.$ && $.http && document.querySelectorAll('#dataTable tr').length > 10)""",
@@ -79,12 +84,71 @@ def fetch_rows_playwright() -> list[dict]:
     return payload
 
 
+def fetch_rows_twse(needed: int = 20, lookback_days: int = 50) -> list[dict]:
+    """Official TWSE BFI82U series.
+
+    外資及陸資(不含外資自營商) + 外資自營商 matches Wantgoo's
+    sumForeignNoDealer + sumForeignWithDealer (億元, rounded to 2 decimals).
+    Amounts are returned in 千元 so to_yi() stays unchanged.
+    """
+    today = datetime.now(TAIPEI).date()
+    rows: list[dict] = []
+    for offset in range(lookback_days):
+        day = today - timedelta(days=offset)
+        url = (
+            "https://www.twse.com.tw/rwd/zh/fund/BFI82U"
+            f"?response=json&dayDate={day.strftime('%Y%m%d')}"
+        )
+        request = urllib.request.Request(url, headers={"User-Agent": HEADERS["User-Agent"]})
+        context = ssl.create_default_context()
+        with urllib.request.urlopen(request, timeout=40, context=context) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        data = payload.get("data") or []
+        foreign_no_dealer = None
+        foreign_dealer = None
+        for item in data:
+            if not item or len(item) < 4:
+                continue
+            name = str(item[0])
+            diff = int(str(item[3]).replace(",", ""))
+            if "不含外資自營商" in name:
+                foreign_no_dealer = diff
+            elif name == "外資自營商":
+                foreign_dealer = diff
+        if payload.get("stat") == "OK" and foreign_no_dealer is not None:
+            rows.append(
+                {
+                    "date": day.isoformat(),
+                    "sumForeignNoDealer": (foreign_no_dealer or 0) / 1000,
+                    "sumForeignWithDealer": (foreign_dealer or 0) / 1000,
+                }
+            )
+        if len(rows) >= needed:
+            break
+        time.sleep(0.25)
+    rows.reverse()
+    if len(rows) < 10:
+        raise RuntimeError(f"TWSE returned too few trading days: {len(rows)}")
+    return rows
+
+
 def fetch_rows() -> list[dict]:
+    errors: list[str] = []
     try:
         return fetch_rows_http()
     except Exception as http_error:
+        errors.append(f"HTTP: {http_error}")
         print(f"HTTP fetch failed ({http_error}); trying Playwright")
+    try:
         return fetch_rows_playwright()
+    except Exception as playwright_error:
+        errors.append(f"Playwright: {playwright_error}")
+        print(f"Playwright fetch failed ({playwright_error}); trying TWSE BFI82U")
+    try:
+        return fetch_rows_twse()
+    except Exception as twse_error:
+        errors.append(f"TWSE: {twse_error}")
+        raise RuntimeError("All foreign-investor sources failed: " + " | ".join(errors)) from twse_error
 
 
 def to_yi(row: dict) -> float:
