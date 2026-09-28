@@ -1,6 +1,9 @@
 name: Update foreign investor data
 
 on:
+  schedule:
+    # 台灣時間每天下午 5 點 = UTC 09:00
+    - cron: "0 9 * * *"
   workflow_dispatch:
 
 permissions:
@@ -8,7 +11,7 @@ permissions:
 
 jobs:
   update:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,11 +21,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Playwright
+      - name: Install fetch dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install playwright
-          python -m playwright install chromium
+          pip install curl_cffi playwright
+          python -m playwright install --with-deps chromium
 
       - name: Fetch Wantgoo 外資買賣超
         run: python scripts/update_data.py

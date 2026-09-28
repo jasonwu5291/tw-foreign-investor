@@ -32,10 +32,19 @@ HEADERS = {
 
 
 def fetch_rows_http() -> list[dict]:
-    request = urllib.request.Request(DATA_URL, headers=HEADERS)
-    context = ssl.create_default_context()
-    with urllib.request.urlopen(request, timeout=40, context=context) as response:
-        payload = json.loads(response.read().decode("utf-8"))
+    try:
+        from curl_cffi import requests as curl_requests
+
+        session = curl_requests.Session(impersonate="chrome131")
+        session.get(SOURCE_PAGE, headers=HEADERS, timeout=40)
+        response = session.get(DATA_URL, headers=HEADERS, timeout=40)
+        response.raise_for_status()
+        payload = response.json()
+    except Exception:
+        request = urllib.request.Request(DATA_URL, headers=HEADERS)
+        context = ssl.create_default_context()
+        with urllib.request.urlopen(request, timeout=40, context=context) as response:
+            payload = json.loads(response.read().decode("utf-8"))
     if not isinstance(payload, list) or not payload:
         raise RuntimeError("Wantgoo HTTP payload was empty or unexpected")
     return payload
